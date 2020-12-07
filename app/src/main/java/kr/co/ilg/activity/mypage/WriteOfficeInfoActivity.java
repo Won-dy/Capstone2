@@ -57,7 +57,7 @@ public class WriteOfficeInfoActivity extends Activity {
         Intent modifyIntent = getIntent();
         isUpdate = modifyIntent.getIntExtra("isUpdate", 0);  // modify
 
-        Toast.makeText(getApplicationContext(), "어디서 왔나~ " + isUpdate, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "어디서 왔나~ " + isUpdate, Toast.LENGTH_SHORT).show();
 
         // WebView 초기화
         init_webView();

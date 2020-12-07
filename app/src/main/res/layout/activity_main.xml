@@ -125,9 +125,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/list_urgency"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="7dp" />
+            android:layout_height="match_parent" />
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

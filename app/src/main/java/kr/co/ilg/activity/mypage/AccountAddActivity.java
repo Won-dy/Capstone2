@@ -69,7 +69,7 @@ public class AccountAddActivity extends AppCompatActivity {
         Intent modifyIntent = getIntent();
         isUpdate = modifyIntent.getIntExtra("isUpdate", 0);  // modify
 
-        Toast.makeText(getApplicationContext(), "어디서 왔나~ " + isUpdate, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "어디서 왔나~ " + isUpdate, Toast.LENGTH_SHORT).show();
         if (isUpdate == 1) {
             addBtn.setText("수 정");
             nextTimeTV.setVisibility(View.INVISIBLE);
@@ -90,6 +90,13 @@ public class AccountAddActivity extends AppCompatActivity {
 
         bSAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, bSList);
         bankSelectSpn.setAdapter(bSAdapter);
+        if (isUpdate == 1) {
+            accountNumET.setText(Sharedpreference.get_manager_bankaccount(getApplicationContext(),"manager_bankaccount","managerinfo"));
+            for (int i = 0; i < bSList.size(); i++) {
+                if((Sharedpreference.get_manager_bankname(getApplicationContext(),"manager_bankname","managerinfo")).equals(bSList.get(i)))
+                    bankSelectSpn.setSelection(i);
+            }
+        }
         bankSelectSpn.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
