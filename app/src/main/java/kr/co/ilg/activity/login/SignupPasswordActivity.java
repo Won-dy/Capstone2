@@ -13,12 +13,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.capstone2.R;
 
+import kr.co.ilg.activity.findwork.WritePostingActivity;
 import kr.co.ilg.activity.mypage.WriteOfficeInfoActivity;
 
 public class SignupPasswordActivity extends AppCompatActivity {
 
     Button nextBtn;
-    EditText passwdET,checkPwET;
+    EditText passwdET, checkPwET;
     String business_reg_num, manager_represent_name;
 
     @Override
@@ -38,17 +39,20 @@ public class SignupPasswordActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(passwdET.getText().toString().equals(checkPwET.getText().toString())) {
-                    Toast.makeText(SignupPasswordActivity.this, "설정 완료", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(SignupPasswordActivity.this, WriteOfficeInfoActivity.class);
-                    intent.putExtra("business_reg_num", business_reg_num);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    intent.putExtra("manager_represent_name", manager_represent_name);
-                    intent.putExtra("manager_pw", passwdET.getText().toString());
-                    startActivity(intent);
-                }
-                else{
-                    Toast.makeText(SignupPasswordActivity.this, "비밀번호가 다릅니다", Toast.LENGTH_SHORT).show();
+                if (((checkPwET.getText().toString()).trim()).equals("") || ((passwdET.getText().toString()).trim()).equals("")) {
+                    Toast.makeText(SignupPasswordActivity.this, "값을 모두 입력해주세요.", Toast.LENGTH_SHORT).show();
+                } else {
+                    if (passwdET.getText().toString().equals(checkPwET.getText().toString())) {
+                        Toast.makeText(SignupPasswordActivity.this, "설정 완료", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(SignupPasswordActivity.this, WriteOfficeInfoActivity.class);
+                        intent.putExtra("business_reg_num", business_reg_num);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent.putExtra("manager_represent_name", manager_represent_name);
+                        intent.putExtra("manager_pw", passwdET.getText().toString());
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(SignupPasswordActivity.this, "비밀번호가 다릅니다", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });

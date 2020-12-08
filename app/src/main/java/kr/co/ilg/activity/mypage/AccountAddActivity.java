@@ -27,6 +27,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import kr.co.ilg.activity.findwork.WritePostingActivity;
 import kr.co.ilg.activity.login.Sharedpreference;
 
 public class AccountAddActivity extends AppCompatActivity {
@@ -78,7 +79,6 @@ public class AccountAddActivity extends AppCompatActivity {
             addBtn.setText("등 록");
 
         bSList = new ArrayList<>();
-        bSList.add("은행");
         bSList.add("KB 국민");
         bSList.add("신한");
         bSList.add("농협");
@@ -112,66 +112,73 @@ public class AccountAddActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 manager_bankaccount = accountNumET.getText().toString();
-                if (isUpdate == 0) {  // 회원가입
+                if ((manager_bankaccount.trim()).equals("")){
+                    Toast.makeText(AccountAddActivity.this, "값을 모두 입력해주세요.", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    if (isUpdate == 0) {  // 회원가입
 
-                    Response.Listener responseListener = new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
+                        Response.Listener responseListener = new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
 
-                            try {
-                                Log.d("mytesstt", response); // 잘 되었는지 확인하기 위한 로그
+                                try {
+                                    Log.d("mytesstt", response); // 잘 되었는지 확인하기 위한 로그
 
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                                Log.d("mytest3", e.toString());
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                    Log.d("mytest3", e.toString());
+                                }
                             }
+                        };
+                        if(Sharedpreference.get_kakaoemail(mContext,"kakaoemail","managerinfo") != null){ // 카카오회원과 일반회원을 구분하여 DB에 값 Request
+                            ManagerDBRequest managerInsert = new ManagerDBRequest(Sharedpreference.get_kakaoemail(mContext,"kakaoemail","managerinfo"),business_reg_num, "0", manager_represent_name, manager_office_name, manager_office_telnum, local_sido, local_sigugun, manager_office_address, manager_name, manager_phonenum, manager_bankaccount, manager_bankname, responseListener);
+                            RequestQueue queue = Volley.newRequestQueue(AccountAddActivity.this);
+                            queue.add(managerInsert);
                         }
-                    };
-                    if(Sharedpreference.get_kakaoemail(mContext,"kakaoemail","managerinfo") != null){ // 카카오회원과 일반회원을 구분하여 DB에 값 Request
-                        ManagerDBRequest managerInsert = new ManagerDBRequest(Sharedpreference.get_kakaoemail(mContext,"kakaoemail","managerinfo"),business_reg_num, "0", manager_represent_name, manager_office_name, manager_office_telnum, local_sido, local_sigugun, manager_office_address, manager_name, manager_phonenum, manager_bankaccount, manager_bankname, responseListener);
-                        RequestQueue queue = Volley.newRequestQueue(AccountAddActivity.this);
-                        queue.add(managerInsert);
-                    }
-                    else {
-                        ManagerDBRequest managerInsert = new ManagerDBRequest("0",business_reg_num, manager_pw, manager_represent_name, manager_office_name, manager_office_telnum, local_sido, local_sigugun, manager_office_address, manager_name, manager_phonenum, manager_bankaccount, manager_bankname, responseListener);
-                        RequestQueue queue = Volley.newRequestQueue(AccountAddActivity.this);
-                        queue.add(managerInsert);
-                    }
+                        else {
+                            ManagerDBRequest managerInsert = new ManagerDBRequest("0",business_reg_num, manager_pw, manager_represent_name, manager_office_name, manager_office_telnum, local_sido, local_sigugun, manager_office_address, manager_name, manager_phonenum, manager_bankaccount, manager_bankname, responseListener);
+                            RequestQueue queue = Volley.newRequestQueue(AccountAddActivity.this);
+                            queue.add(managerInsert);
+                        }
 
-                    Log.d("mytesttttt", business_reg_num + manager_represent_name + manager_pw + manager_office_name + manager_office_telnum + local_sido + local_sigugun + manager_office_address + manager_name + manager_phonenum + manager_bankaccount + manager_bankname);
+                        Log.d("mytesttttt", business_reg_num + manager_represent_name + manager_pw + manager_office_name + manager_office_telnum + local_sido + local_sigugun + manager_office_address + manager_name + manager_phonenum + manager_bankaccount + manager_bankname);
 
-                    Intent intent = new Intent(AccountAddActivity.this, MainActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        Toast.makeText(AccountAddActivity.this, "회원가입 완료", Toast.LENGTH_SHORT).show();
 
-                    startActivity(intent);
-                } else {  // 계좌 수정
-                    String bnum = Sharedpreference.get_business_reg_num(getApplicationContext(), "business_reg_num","managerinfo");
-                    Response.Listener rListener = new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
+                        Intent intent = new Intent(AccountAddActivity.this, MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
-                            try {
-                                JSONObject jResponse = new JSONObject(response.substring(response.indexOf("{"), response.lastIndexOf("}") + 1));
-                                boolean updateSuccess3 = jResponse.getBoolean("updateSuccess3");
-                                Intent updateIntent = new Intent(AccountAddActivity.this, AccountManageActivity.class);
-                                updateIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                if (updateSuccess3) {
-                                    Sharedpreference.set_manager_bankaccount(getApplicationContext(), "manager_bankaccount", manager_bankaccount,"managerinfo");
-                                    Sharedpreference.set_manager_bankname(getApplicationContext(), "manager_bankname", manager_bankname,"managerinfo");
+                        startActivity(intent);
+                    } else {  // 계좌 수정
+                        String bnum = Sharedpreference.get_business_reg_num(getApplicationContext(), "business_reg_num","managerinfo");
+                        Response.Listener rListener = new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
 
-                                    Toast.makeText(AccountAddActivity.this, "수정 완료되었습니다", Toast.LENGTH_SHORT).show();
-                                } else
-                                    Toast.makeText(AccountAddActivity.this, "수정 실패", Toast.LENGTH_SHORT).show();
-                                startActivity(updateIntent);
-                            } catch (Exception e) {
-                                Log.d("mytest", e.toString());
+                                try {
+                                    JSONObject jResponse = new JSONObject(response.substring(response.indexOf("{"), response.lastIndexOf("}") + 1));
+                                    boolean updateSuccess3 = jResponse.getBoolean("updateSuccess3");
+                                    Intent updateIntent = new Intent(AccountAddActivity.this, AccountManageActivity.class);
+                                    updateIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    if (updateSuccess3) {
+                                        Sharedpreference.set_manager_bankaccount(getApplicationContext(), "manager_bankaccount", manager_bankaccount,"managerinfo");
+                                        Sharedpreference.set_manager_bankname(getApplicationContext(), "manager_bankname", manager_bankname,"managerinfo");
+
+                                        Toast.makeText(AccountAddActivity.this, "수정 완료되었습니다", Toast.LENGTH_SHORT).show();
+                                    } else
+                                        Toast.makeText(AccountAddActivity.this, "수정 실패", Toast.LENGTH_SHORT).show();
+                                    startActivity(updateIntent);
+                                } catch (Exception e) {
+                                    Log.d("mytest", e.toString());
+                                }
                             }
-                        }
-                    };
-                    UpdateOfficeInfoRequest updateOfficeInfoRequest = new UpdateOfficeInfoRequest("accountUpdate", bnum, manager_bankname, manager_bankaccount, rListener);  // Request 처리 클래스
+                        };
+                        UpdateOfficeInfoRequest updateOfficeInfoRequest = new UpdateOfficeInfoRequest("accountUpdate", bnum, manager_bankname, manager_bankaccount, rListener);  // Request 처리 클래스
 
-                    RequestQueue queue = Volley.newRequestQueue(AccountAddActivity.this);  // 데이터 전송에 사용할 Volley의 큐 객체 생성
-                    queue.add(updateOfficeInfoRequest);  // Volley로 구현된 큐에 ValidateRequest 객체를 넣어둠으로써 실제로 서버 연동 발생
+                        RequestQueue queue = Volley.newRequestQueue(AccountAddActivity.this);  // 데이터 전송에 사용할 Volley의 큐 객체 생성
+                        queue.add(updateOfficeInfoRequest);  // Volley로 구현된 큐에 ValidateRequest 객체를 넣어둠으로써 실제로 서버 연동 발생
+                    }
                 }
             }
         });
@@ -205,6 +212,8 @@ public class AccountAddActivity extends AppCompatActivity {
                 }
 
                 Log.d("mytesttttt", business_reg_num + manager_represent_name + manager_pw + manager_office_name + manager_office_telnum + local_sido + local_sigugun + manager_office_address + manager_name + manager_phonenum + manager_bankaccount + manager_bankname);
+
+                Toast.makeText(AccountAddActivity.this, "회원가입 완료", Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(AccountAddActivity.this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
