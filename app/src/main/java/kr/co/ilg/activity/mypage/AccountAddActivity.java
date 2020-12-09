@@ -36,7 +36,7 @@ public class AccountAddActivity extends AppCompatActivity {
     Spinner bankSelectSpn;
     ArrayList<String> bSList;
     ArrayAdapter<String> bSAdapter;
-    TextView nextTimeTV;
+    //TextView nextTimeTV;
     String business_reg_num, manager_represent_name, manager_pw, manager_office_name, manager_office_telnum, manager_office_address, manager_name, manager_phonenum, manager_bankaccount, manager_bankname, local_sido, local_sigugun;
     EditText accountNumET;
     Context mContext;
@@ -48,7 +48,7 @@ public class AccountAddActivity extends AppCompatActivity {
         setContentView(R.layout.account_add);
         mContext = this;
         addBtn = findViewById(R.id.addBtn);
-        nextTimeTV = findViewById(R.id.nextTimeTV);
+        //nextTimeTV = findViewById(R.id.nextTimeTV);
         bankSelectSpn = findViewById(R.id.bankSelectSpn);
         accountNumET = findViewById(R.id.accountNumET);
 
@@ -73,7 +73,7 @@ public class AccountAddActivity extends AppCompatActivity {
         //Toast.makeText(getApplicationContext(), "어디서 왔나~ " + isUpdate, Toast.LENGTH_SHORT).show();
         if (isUpdate == 1) {
             addBtn.setText("수 정");
-            nextTimeTV.setVisibility(View.INVISIBLE);
+            //nextTimeTV.setVisibility(View.INVISIBLE);
         }
         else
             addBtn.setText("등 록");
@@ -183,6 +183,7 @@ public class AccountAddActivity extends AppCompatActivity {
             }
         });
 
+/*
         nextTimeTV.setPaintFlags(nextTimeTV.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
         nextTimeTV.setOnClickListener(new View.OnClickListener() { // 건너뛰기 누를시
             @Override
@@ -221,5 +222,6 @@ public class AccountAddActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+*/
     }
 }

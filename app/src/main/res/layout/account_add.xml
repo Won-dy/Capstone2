@@ -82,6 +82,7 @@
             android:textSize="18sp"
             android:textColor="@color/WhiteColor"/>
 
+<!--
         <TextView
             android:id="@+id/nextTimeTV"
             android:layout_width="wrap_content"
@@ -91,6 +92,7 @@
             android:layout_margin="10dp"
             android:clickable="true"
             android:text="건너뛰기"/>
+-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
