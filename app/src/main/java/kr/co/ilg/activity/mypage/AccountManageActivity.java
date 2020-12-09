@@ -53,6 +53,10 @@ public class AccountManageActivity extends AppCompatActivity { // implements Vie
         ImageButton accountDelete = findViewById(R.id.accountDelete);
         managerName.setText(Sharedpreference.get_manager_name(mContext, "manager_name", "managerinfo"));
         bankaccount.setText(Sharedpreference.get_manager_bankaccount(mContext, "manager_bankaccount", "managerinfo"));
+        if(!Sharedpreference.get_manager_bankaccount(mContext, "manager_bankaccount", "managerinfo").equals("")) {
+            bankaccount.setText(Sharedpreference.get_manager_bankaccount(mContext, "manager_bankaccount", "managerinfo"));
+        }
+        else bankaccount.setText("계좌를 추가해주세요");
         bankname.setText(Sharedpreference.get_manager_bankname(mContext, "manager_bankname", "managerinfo"));
 
         accountmodify.setOnClickListener(new View.OnClickListener() { // 계좌 수정 클릭리스너
