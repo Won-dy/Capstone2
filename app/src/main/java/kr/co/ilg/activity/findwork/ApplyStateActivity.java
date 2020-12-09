@@ -274,7 +274,7 @@ public class ApplyStateActivity extends AppCompatActivity {
 //                    finish();
 //                    startActivity(intent);
                 } catch (Exception e) {
-                    Log.d("mytest3", e.toString());
+                    Log.d("mytest4", e.toString());
                     Toast.makeText(ApplyStateActivity.this, "근로자를 선택하세요.", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -394,7 +394,7 @@ public class ApplyStateActivity extends AppCompatActivity {
 
                             } catch (Exception e) {
                                 e.printStackTrace();
-                                Log.d("mytest3", e.toString());
+                                Log.d("mytest5", e.toString());
                             }
                             //   myAdapter.notifyDataSetChanged();
                             Log.d("zdzd", "zzdzfdzfd");
@@ -412,7 +412,7 @@ public class ApplyStateActivity extends AppCompatActivity {
 
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Log.d("mytest3", e.toString());
+                    Log.d("mytest6", e.toString());
                 }
 
 //                        myAdapter.setOnItemClickListener(new ApplyStateRVAdapter.OnItemClickListener() {
