@@ -137,7 +137,7 @@ public class FieldInfoActivity extends AppCompatActivity {
 
                     }
                     work_info_RecyclerView.setLayoutManager(layoutManager);
-                    workAdapter=new ListAdapter(getApplicationContext(),workInfoArrayList);
+                    workAdapter=new ListAdapter(getApplicationContext(),workInfoArrayList,work_info_RecyclerView);
 
                     work_info_RecyclerView.setAdapter(workAdapter);
                     workAdapter.notifyDataSetChanged() ;

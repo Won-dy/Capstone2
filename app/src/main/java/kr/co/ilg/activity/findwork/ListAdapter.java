@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import kr.co.ilg.activity.login.Sharedpreference;
 
 public class ListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    View dialogView;
+    RecyclerView recyclerView;
     Intent intent;
     View clickedView;
     public static class MyViewHolder extends RecyclerView.ViewHolder {
@@ -52,9 +52,10 @@ public class ListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context context;
     private ArrayList<ListViewItem> workInfo;
 
-    public ListAdapter(Context context, ArrayList<ListViewItem> workInfo) {
+    public ListAdapter(Context context, ArrayList<ListViewItem> workInfo, RecyclerView recyclerView) {
         this.context = context;
         this.workInfo = workInfo;
+        this.recyclerView = recyclerView;
     }
 
     @NonNull
@@ -106,23 +107,24 @@ public class ListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     if(clickedView==null)
                     {
                         clickedView=myViewHolder.expanded_menu;
-                    //myViewHolder.expanded_menu.setVisibility(View.VISIBLE);
-                    //                  notifyItemChanged(position);
                         changeVisibility(true,clickedView);
-
+                       // recyclerView.smoothScrollToPosition();
+                    //    Log.d("viewposition",(int)view.getY()-1+"");
                     }
                     else//전에 클릭한 것이 있을 때
                     {
 //                        같은 거 클릭했을 때
                         if(clickedView == myViewHolder.expanded_menu) {
-                            myViewHolder.expanded_menu.setVisibility(View.GONE);
+                            changeVisibility(false,clickedView);
                             clickedView = null;
                         }
                         //다른 거 클릭했을 때
                         else {
-                            myViewHolder.expanded_menu.setVisibility(View.VISIBLE);
-                            clickedView.setVisibility(View.GONE);
+                            changeVisibility(true,myViewHolder.expanded_menu);;
+                            changeVisibility(false,clickedView);;
                             clickedView = myViewHolder.expanded_menu;
+                     //       recyclerView.smoothScrollToPosition((int)view.getY()-1);
+                    //        Log.d("viewposition",(int)view.getY()-1+"");
                         }
                     }
 
@@ -207,7 +209,7 @@ public class ListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         // ValueAnimator.ofInt(int... values)는 View가 변할 값을 지정, 인자는 int 배열
         ValueAnimator va = isExpanded ? ValueAnimator.ofInt(0, 300) : ValueAnimator.ofInt(600, 0);
         // Animation이 실행되는 시간, n/1000초
-        va.setDuration(300);
+        va.setDuration(200);
         va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
@@ -221,7 +223,11 @@ public class ListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         // Animation start
         va.start();
     }
+public int getPosition()
+{
 
+    return 0;
+}
     @Override
     public int getItemCount() {
 

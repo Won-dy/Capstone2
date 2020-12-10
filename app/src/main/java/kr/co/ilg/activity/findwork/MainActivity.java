@@ -451,7 +451,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
 //                    Log.d("aaaaaaaaa",jp_title[0]);
                     urgency_RecyclerView.setLayoutManager(layoutManager);
-                    urgencyAdapter = new ListAdapter(getApplicationContext(), workInfoArrayList);
+                    urgencyAdapter = new ListAdapter(getApplicationContext(), workInfoArrayList,urgency_RecyclerView);
                     urgency_RecyclerView.setAdapter(urgencyAdapter);
                     urgencyAdapter.notifyDataSetChanged() ;
 
