@@ -224,7 +224,7 @@ public class FieldWorkerListActivity extends AppCompatActivity {
 
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView); //프래그먼트 생성
-
+        bottomNavigationView.getMenu().findItem(R.id.tab2).setChecked(true);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
