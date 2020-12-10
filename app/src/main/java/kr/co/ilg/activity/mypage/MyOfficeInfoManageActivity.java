@@ -99,15 +99,16 @@ public class MyOfficeInfoManageActivity extends AppCompatActivity {
                 AlertDialog.Builder dlg = new AlertDialog.Builder(MyOfficeInfoManageActivity.this);
                 dialogview = (View) View.inflate(MyOfficeInfoManageActivity.this, R.layout.mp_office_info_dlg, null);
 
+                edit_office_detail_info = dialogview.findViewById(R.id.edit_office_detail_info);
+                edit_office_detail_info.setText(office_introduce.getText().toString());
+
                 dlg.setView(dialogview);
                 dlg.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        edit_office_detail_info = dialogview.findViewById(R.id.edit_office_detail_info);
                         Response.Listener rListener = new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
-
                                 try {
                                     JSONObject jResponse = new JSONObject(response.substring(response.indexOf("{"), response.lastIndexOf("}") + 1));
                                     boolean updateSuccess = jResponse.getBoolean("updateSuccess");

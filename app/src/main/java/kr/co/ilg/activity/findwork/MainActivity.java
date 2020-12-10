@@ -333,7 +333,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             }
                         }
                         if(a==0){
-                            jobsetting.setText("선택안함");
+                            jobsetting.setText("전체");
                         }
                         else jobsetting.setText(text2);
                     }
