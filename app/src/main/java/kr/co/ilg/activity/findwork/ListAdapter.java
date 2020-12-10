@@ -69,10 +69,7 @@ public class ListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         Log.d("positionViewHolder", "" + position);
         MyViewHolder myViewHolder = (MyViewHolder) holder;
-      final MyViewHolder[] viewHolder = new MyViewHolder[workInfo.size()];
-       viewHolder[position] = (MyViewHolder) holder;
 
-        Log.d("positionviewsize",""+viewHolder.length);
         if (workInfo.get(position).urgency.equals("0")) {
             myViewHolder.title.setText(workInfo.get(position).title);
             myViewHolder.date.setText(workInfo.get(position).date);
@@ -123,8 +120,7 @@ public class ListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                             changeVisibility(true,myViewHolder.expanded_menu);;
                             changeVisibility(false,clickedView);;
                             clickedView = myViewHolder.expanded_menu;
-                     //       recyclerView.smoothScrollToPosition((int)view.getY()-1);
-                    //        Log.d("viewposition",(int)view.getY()-1+"");
+
                         }
                     }
 
@@ -150,7 +146,6 @@ public class ListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                             intent.putExtra("jp_is_urgency", workInfo.get(position).urgency);
                             intent.putExtra("field_code", workInfo.get(position).field_code);
                             context.startActivity(intent);
-                            notifyItemChanged(position);
                         }
                     });
                     myViewHolder.btnSupply.setOnClickListener(new View.OnClickListener() {
@@ -163,7 +158,6 @@ public class ListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                             intent.putExtra("jp_num", workInfo.get(position).jp_num);
                             intent.putExtra("jp_title", workInfo.get(position).title);
                             context.startActivity(intent);
-                            notifyItemChanged(position);
                         }
                     });
                     myViewHolder.btnPick.setOnClickListener(new View.OnClickListener() {
@@ -176,7 +170,6 @@ public class ListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                             intent.putExtra("jp_num", workInfo.get(position).jp_num);
                             intent.putExtra("jp_title", workInfo.get(position).title);
                             context.startActivity(intent);
-                            notifyItemChanged(position);
                         }
 
                     });
@@ -213,25 +206,17 @@ public class ListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
-                // imageView의 높이 변경
                 view.getLayoutParams().height = (int) animation.getAnimatedValue();
                 view.requestLayout();
-                // imageView가 실제로 사라지게하는 부분
                 view.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
             }
         });
         // Animation start
         va.start();
     }
-public int getPosition()
-{
 
-    return 0;
-}
     @Override
     public int getItemCount() {
-
-        Log.d("positionpppp","getitemcount");
         return workInfo.size();
     }
 }

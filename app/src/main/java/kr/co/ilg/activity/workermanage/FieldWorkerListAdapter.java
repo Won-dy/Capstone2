@@ -1,8 +1,10 @@
 package kr.co.ilg.activity.workermanage;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,6 +21,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.capstone2.R;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -29,12 +34,14 @@ Context context;
     View dialogView;
     Button btnPay, btnReview, btnCall;
     Intent intent;
-
+    View clickedView;
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView profileIV;
         TextView wkName, wkAge, wkPNum;
         ImageButton arrowRBtn;
-
+        LinearLayout btnWorkerPay, btnWorkerCall, btnWorkerReview, expanded_menu;
+        ImageView choolImage, toiImage, payImage;
+        TextView choolText, toiText;
         MyViewHolder(View view) {
             super(view);
             profileIV = view.findViewById(R.id.profileIV);
@@ -42,7 +49,15 @@ Context context;
             wkAge = view.findViewById(R.id.wkAge);
             wkPNum = view.findViewById(R.id.wkPNum);
             arrowRBtn = view.findViewById(R.id.arrowRBtn);
-
+            expanded_menu = view.findViewById(R.id.expanded_menu);
+            btnWorkerPay = view.findViewById(R.id.btnWorkerPay);
+            btnWorkerCall = view.findViewById(R.id.btnWorkerCall);
+            btnWorkerReview = view.findViewById(R.id.btnWorkerReview);
+            choolImage = view.findViewById(R.id.choolImage);
+            choolText = view.findViewById(R.id.choolText);
+            toiImage = view.findViewById(R.id.toiImage);
+            toiText = view.findViewById(R.id.toiText);
+            payImage=view.findViewById(R.id.payImage);
         }
     }
 
@@ -87,33 +102,48 @@ Context context;
             @Override
             public void onClick(View v) {
                 context =v.getContext();
-                final AlertDialog.Builder dlg = new AlertDialog.Builder(context);
-                dialogView = View.inflate(context, R.layout.field_workerlist_dialog, null);
-                dlg.setView(dialogView);
-                btnPay = dialogView.findViewById(R.id.btnPay);
-                btnReview = dialogView.findViewById(R.id.btnReview);
-                btnCall = dialogView.findViewById(R.id.btnCall);
-               //TODO 디비읽어서 TEXT 출근 완료,퇴근 완료로 바꾸기
-                TextView in_tv = dialogView.findViewById(R.id.in_tv);
-                TextView out_tv = dialogView.findViewById(R.id.out_tv);
+
+                //전에 클릭한 것이 없을 때
+                if(clickedView==null)
+                {
+                    clickedView=myViewHolder.expanded_menu;
+                    changeVisibility(true,clickedView);
+                }
+                else//전에 클릭한 것이 있을 때
+                {
+//                        같은 거 클릭했을 때
+                    if(clickedView == myViewHolder.expanded_menu) {
+                        changeVisibility(false,clickedView);
+                        clickedView = null;
+                    }
+                    //다른 거 클릭했을 때
+                    else {
+                        changeVisibility(true,myViewHolder.expanded_menu);;
+                        changeVisibility(false,clickedView);;
+                        clickedView = myViewHolder.expanded_menu;
+
+                    }
+                }
+
+
 
                 if(wkList.get(position).mf_is_choolgeun.equals("1"))
                 {
-                    in_tv.setText("출근완료");
+                    myViewHolder.choolText.setText("출근완료");
+                    //myViewHolder.choolImage.setImageTintBlendMode();
+                    myViewHolder.choolImage.setColorFilter(Color.parseColor("#2EC5D4"));
                 }
                 if(wkList.get(position).mf_is_toigeun.equals("1"))
                 {
-                    out_tv.setText("퇴근완료");
+                    myViewHolder.toiText.setText("퇴근완료");
+                    myViewHolder.toiImage.setColorFilter(Color.parseColor("#2EC5D4"));
+                }
+                if(wkList.get(position).mf_is_paid.equals("1"))
+                {
+                    myViewHolder.payImage.setColorFilter(Color.parseColor("#2EC5D4"));
                 }
 
-                dlg.setNegativeButton("닫기", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                });
-
-                btnPay.setOnClickListener(new View.OnClickListener() {
+                myViewHolder.btnWorkerPay.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         context =v.getContext();
@@ -127,7 +157,7 @@ Context context;
                     }
                 });
 
-                btnReview.setOnClickListener(new View.OnClickListener() {
+                myViewHolder.btnWorkerReview.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
 
@@ -140,7 +170,7 @@ Context context;
                     }
                 });
 
-                btnCall.setOnClickListener(new View.OnClickListener() {
+                myViewHolder.btnWorkerCall.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Uri uri = Uri.parse("tel:" + wkList.get(position).wkPNum);
@@ -149,11 +179,26 @@ Context context;
                     }
                 });
 
-              dlg.show();
+
             }
         });
     }
-
+    private void changeVisibility(final boolean isExpanded, View view) {
+        // ValueAnimator.ofInt(int... values)는 View가 변할 값을 지정, 인자는 int 배열
+        ValueAnimator va = isExpanded ? ValueAnimator.ofInt(0, 300) : ValueAnimator.ofInt(600, 0);
+        // Animation이 실행되는 시간, n/1000초
+        va.setDuration(200);
+        va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                view.getLayoutParams().height = (int) animation.getAnimatedValue();
+                view.requestLayout();
+                view.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
+            }
+        });
+        // Animation start
+        va.start();
+    }
     @Override
     public int getItemCount() {
         return wkList.size();

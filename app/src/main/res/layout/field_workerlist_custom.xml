@@ -6,17 +6,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintTop_toTopOf="parent"
+    android:id="@+id/linear"
+    >
     <ImageView
         android:id="@+id/profileIV"
         android:layout_width="65dp"
         android:layout_height="65dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_gravity="center"
         android:src="@drawable/user"
         android:layout_marginLeft="20dp"
-
         />
 
     <LinearLayout
@@ -102,12 +104,137 @@
         android:id="@+id/arrowRBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="75dp"
         android:background="@android:color/transparent"
         android:src="@drawable/arrow_right"
         android:layout_marginRight="5dp"
+        android:layout_gravity="center"
         />
+</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:id="@+id/expanded_menu"
+        app:layout_constraintTop_toBottomOf="@id/linear"
+        android:visibility="gone"
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            >
 
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/choolcheck"
+                android:layout_marginTop="11dp"
+                android:id="@+id/choolImage"
+                android:tint="#FF1F00"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="출근 X"
+                android:layout_marginTop="4dp"
+                android:id="@+id/choolText"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            >
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/choolcheck"
+                android:layout_marginTop="11dp"
+                android:id="@+id/toiImage"
+                android:tint="#FF1F00"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="퇴근 X"
+                android:layout_marginTop="4dp"
+                android:id="@+id/toiText"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:id="@+id/btnWorkerPay"
+            >
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/coin"
+                android:layout_marginTop="11dp"
+                android:tint="#FF1F00"
+                android:id="@+id/payImage"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="급여 지급"
+                android:layout_marginTop="4dp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:id="@+id/btnWorkerCall"
+            >
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/call"
+                android:layout_marginTop="11dp"
+                android:tint="#4CAF50"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="전화 걸기"
+                android:layout_marginTop="4dp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:id="@+id/btnWorkerReview"
+            >
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="37dp"
+                android:layout_marginLeft="4dp"
+                android:src="@drawable/writingreview"
+                android:layout_marginTop="14dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="후기 작성"
+                android:layout_marginTop="4dp"
+                />
+        </LinearLayout>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
