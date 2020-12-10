@@ -62,6 +62,8 @@ public class BusinessLicenseConfirmActivity extends AppCompatActivity {
                             Log.d("mytesstt", String.valueOf(inquiry));
                             if(inquiry){
                                 Toast.makeText(BusinessLicenseConfirmActivity.this, "조회 완료",Toast.LENGTH_SHORT).show();
+                                ceoNameET.setFocusable(false);
+                                blnumET.setFocusable(false);
                             }
                             else{
                                 Toast.makeText(BusinessLicenseConfirmActivity.this, "일치하는 정보가 없습니다",Toast.LENGTH_SHORT).show();

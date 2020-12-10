@@ -312,7 +312,7 @@ boolean success;
                 String jp_contents = detail_info.getText().toString();
                 String field_name = field_name_et.getText().toString();
                 String field_address = field_address_et.getText().toString();
-                if (business_reg_num.equals("") || jp_title.equals("") || jp_job_cost.equals("") || jp_job_tot_people.equals("") || jp_job_date.equals("") || field_name.equals("") || field_address.equals("")) {
+                if ((business_reg_num.trim()).equals("") || (jp_title.trim()).equals("") || (jp_job_cost.trim()).equals("") || (jp_job_tot_people.trim()).equals("") || (jp_job_date.trim()).equals("") || (field_name.trim()).equals("") || (field_address.trim()).equals("") || ((startTimeBtn.getText().toString()).equals("출근시간")) || ((finishTimeBtn.getText().toString()).equals("퇴근시간"))) {
                     Toast.makeText(WritePostingActivity.this, "필수값은 모두 입력해주시기 바랍니다.", Toast.LENGTH_SHORT).show();
                 } else {
 //                Log.d("=======php 보낼 값=======",jp_title + jp_job_cost+ jp_job_tot_people+jp_job_date+ jp_contents+ field_name+
