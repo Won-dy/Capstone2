@@ -218,12 +218,12 @@ public class FieldWorkerListActivity extends AppCompatActivity {
                 queue.add(fieldrequest);
             }
 
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });
-
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView); //프래그먼트 생성
         bottomNavigationView.getMenu().findItem(R.id.tab2).setChecked(true);

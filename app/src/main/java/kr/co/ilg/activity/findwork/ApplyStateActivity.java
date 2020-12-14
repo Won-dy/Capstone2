@@ -3,6 +3,7 @@ package kr.co.ilg.activity.findwork;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -261,9 +262,20 @@ public class ApplyStateActivity extends AppCompatActivity {
                             message += pw_worker_name[i] + " ,";
 //                wkList.remove(i);
 //                minus++;
-                            myAdapter.notifyDataSetChanged();
-                            mRecyclerView.setAdapter(myAdapter);
-                            recycle_renew();
+
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    myAdapter.notifyDataSetChanged();
+                                    mRecyclerView.setAdapter(myAdapter);
+                                    recycle_renew();
+                                }
+                            }, 300); //딜레이 타임 조절 0.3초
+
+//                            myAdapter.notifyDataSetChanged();
+//                            mRecyclerView.setAdapter(myAdapter);
+//                            recycle_renew();
                         }
                     }
                     //    wklist_size-=minus;
