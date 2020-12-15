@@ -3,6 +3,7 @@ package kr.co.ilg.activity.findwork;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -39,6 +40,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import kr.co.ilg.activity.mypage.AccountAddActivity;
 import kr.co.ilg.activity.mypage.MypageMainActivity;
 import kr.co.ilg.activity.workermanage.FieldListActivity;
 
@@ -293,9 +295,19 @@ public class PickStateActivity extends AppCompatActivity {
                             RequestQueue queue = Volley.newRequestQueue(PickStateActivity.this);
                             queue.add(pickState);
                             message += pw_worker_name[i] + " ,";
-                            myAdapter.notifyDataSetChanged();
-                            mRecyclerView.setAdapter(myAdapter);
-                            recycle_renew();
+
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    myAdapter.notifyDataSetChanged();
+                                    mRecyclerView.setAdapter(myAdapter);
+                                    recycle_renew();
+                                }
+                            }, 300); //딜레이 타임 조절 0.3초
+
+
+
                         }
                     }
                     //    wklist_size-=minus;
