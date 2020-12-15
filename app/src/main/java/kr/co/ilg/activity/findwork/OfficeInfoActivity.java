@@ -40,7 +40,7 @@ public class OfficeInfoActivity extends AppCompatActivity {
     String name[], contents[], datetime[], key[];
     String mapAddress;
     RecyclerView.LayoutManager layoutManager;
-
+    WorkMapActivity workMapActivity = new WorkMapActivity();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -179,7 +179,10 @@ public class OfficeInfoActivity extends AppCompatActivity {
                 Log.d("mappppp",mapAddress);
                 Intent intent = new Intent(OfficeInfoActivity.this, WorkMapActivity.class);
                 intent.putExtra("mapAddress",mapAddress);
+                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
+                workMapActivity.setMapCenter(mapAddress);
             }
         });
     }

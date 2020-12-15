@@ -32,6 +32,7 @@ public class WorkInfoActivity extends AppCompatActivity { //일자리 정보화�
     Context mContext;
     Intent intent;
     String mapAddress;
+    WorkMapActivity workMapActivity = new WorkMapActivity();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,7 +102,10 @@ public class WorkInfoActivity extends AppCompatActivity { //일자리 정보화�
             public void onClick(View view) {
                 Intent intent = new Intent(WorkInfoActivity.this, WorkMapActivity.class);
                 intent.putExtra("mapAddress",mapAddress);
+                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);;
                 startActivity(intent);
+                workMapActivity.setMapCenter(mapAddress);
             }
         });
 
