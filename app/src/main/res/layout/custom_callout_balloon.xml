@@ -13,20 +13,19 @@
     android:paddingRight="0dp"
     android:paddingTop="0dp"
     >
-    <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/building"
-        android:id="@+id/badge"
-        android:layout_marginTop="18dp"
-        />
     <LinearLayout
         android:id="@+id/balloon_inner_layout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
         android:layout_weight="1" >
-
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/building"
+            android:id="@+id/badge"
+            android:layout_gravity="center"
+            />
         <LinearLayout
             android:layout_marginTop="5dp"
             android:layout_width="0dp"

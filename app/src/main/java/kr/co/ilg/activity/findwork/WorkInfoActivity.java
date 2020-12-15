@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -105,7 +106,13 @@ public class WorkInfoActivity extends AppCompatActivity { //일자리 정보화�
                 intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);;
                 startActivity(intent);
-                workMapActivity.setMapCenter(mapAddress);
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        workMapActivity.setMapCenter(mapAddress);
+                    }
+                }, 300); //딜레이 타임 조절 0.3초
             }
         });
 
