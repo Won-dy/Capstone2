@@ -112,7 +112,7 @@ public class WorkInfoActivity extends AppCompatActivity { //일자리 정보화�
                     public void run() {
                         workMapActivity.setMapCenter(mapAddress);
                     }
-                }, 300); //딜레이 타임 조절 0.3초
+                }, 100); //딜레이 타임 조절 0.3초
             }
         });
 

@@ -10,6 +10,7 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -193,8 +194,21 @@ public class WorkMapActivity extends AppCompatActivity implements MapView.Curren
                         @Override
                         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                            fieldCheck = isChecked;
+
+                            if(fieldCheck)
+                                fieldCheck = false;
+                            else
+                                fieldCheck =true;
+                            checkbox_layout.setEnabled(false);
                             markerChange(marker, marker1, field_address, manager_office_address, fieldCheck, managerCheck);
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    checkbox_layout.setEnabled(true);
+                                }
+                            }, 2000); //딜레이 타임 조절 2초
+
                         }
                     });
 
@@ -202,8 +216,21 @@ public class WorkMapActivity extends AppCompatActivity implements MapView.Curren
                     office_checkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                         @Override
                         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                            managerCheck = isChecked;
+
+                            if(managerCheck)
+                            managerCheck = false;
+                            else
+                                managerCheck =true;
+//                            Log.d("cccccccccccccccccc",""+managerCheck);
+                            checkbox_layout.setEnabled(false);
                             markerChange(marker, marker1, field_address, manager_office_address, fieldCheck, managerCheck);
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    checkbox_layout.setEnabled(true);
+                                }
+                            }, 2000); //딜레이 타임 조절 2초
 
                         }
                     });
@@ -264,6 +291,7 @@ public class WorkMapActivity extends AppCompatActivity implements MapView.Curren
                             marker[i].setCustomImageResourceId(R.drawable.building_mint1);
                             marker[i].setSelectedMarkerType(MapPOIItem.MarkerType.CustomImage); // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
                             marker[i].setCustomSelectedImageResourceId(R.drawable.building_mint2);
+                            marker[i].setAlpha(1);
                             //onMapViewInitialized(mapView);
 //                            marker[i].setCustomCalloutBalloon(mapView);
                             mapView.addPOIItem(marker[i]);
@@ -280,9 +308,10 @@ public class WorkMapActivity extends AppCompatActivity implements MapView.Curren
         } else {
 //            for (int i = 0; i < marker.length; i++)
 //                Log.d("bbbbmarker", marker[i].getItemName() + marker[i].getTag());
-
-            mapView.removePOIItems(marker);
-
+            for (int i = 0; i < field_address.length; i++) {
+                marker[i].setAlpha(0);
+            }
+//            mapView.removePOIItems(marker);
         }
 
         if (managerCheck) {
@@ -323,9 +352,10 @@ public class WorkMapActivity extends AppCompatActivity implements MapView.Curren
                             marker1[i].setCustomImageResourceId(R.drawable.supervisor2);
                             marker1[i].setSelectedMarkerType(MapPOIItem.MarkerType.CustomImage); // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
                             marker1[i].setCustomSelectedImageResourceId(R.drawable.supervisor1);
+                            marker1[i].setAlpha(1);
                             //             marker1[i].setCustomCalloutBalloon(mapView);
                             mapView.addPOIItem(marker1[i]);
-                            Log.d("bbbbbcreate", marker1[i].getItemName() + marker1[i].getTag());
+                            Log.d("bbbbbbbbbbbbbbcreate", marker1[i].getItemName() + marker1[i].getTag());
                         }
                     }
 
@@ -334,10 +364,8 @@ public class WorkMapActivity extends AppCompatActivity implements MapView.Curren
             }
         } else {
             for (int i = 0; i < marker1.length; i++)
-                Log.d("bbbbmarker", marker1[i].getItemName() + marker1[i].getTag());
-
-            mapView.removePOIItems(marker1);
-
+              marker1[i].setAlpha(0);
+//            mapView.removePOIItems(marker1);
         }
 
     }
