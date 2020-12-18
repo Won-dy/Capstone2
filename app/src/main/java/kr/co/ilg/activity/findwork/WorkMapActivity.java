@@ -113,34 +113,8 @@ public class WorkMapActivity extends AppCompatActivity implements MapView.Curren
                 mapView.setMapCenterPoint(MapPoint.mapPointWithGeoCoord(latitude, longitude), true);
                 checkRunTimePermission();
             }
-//            mapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading);
         }
-        // mapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading);
 
-//        else {
-//            Geocoder geocoder = new Geocoder(this);
-//
-//            List<Address> list = null;
-//            try {
-//                list = geocoder.getFromLocationName(
-//                        firstScreen, // 지역 이름
-//                        10); // 읽을 개수
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//                Log.e("test", "입출력 오류 - 서버에서 주소변환시 에러발생");
-//                Log.d("test", e.toString());
-//            }
-//
-//            if (list != null) {
-//                if (list.size() == 0) {
-//                    Log.d("test", "해당되는 주소 정보는 없습니다");
-//                } else {
-//
-//                    mapView.setMapCenterPointAndZoomLevel(MapPoint.mapPointWithGeoCoord(list.get(0).getLatitude(), list.get(0).getLongitude()), 1, true);
-//                }
-//            }
-//        }
-//        mapView.setShowCurrentLocationMarker(true);
         Log.d("ccccc", mapView.getCurrentLocationTrackingMode().toString());
 
 
@@ -628,7 +602,7 @@ public class WorkMapActivity extends AppCompatActivity implements MapView.Curren
                 }
             };
 
-            MapForOfficeRequest mapForOffice = new MapForOfficeRequest(mapPOIItem.getItemName(), responseListener);
+            MapForOfficeRequest mapForOffice = new MapForOfficeRequest(mapPOIItem.getItemName().substring(0, mapPOIItem.getItemName().indexOf("*")), responseListener);
             RequestQueue queue1 = Volley.newRequestQueue(WorkMapActivity.this);
             queue1.add(mapForOffice);
         }
