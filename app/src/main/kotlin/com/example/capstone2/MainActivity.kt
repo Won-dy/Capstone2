@@ -10,6 +10,7 @@ import android.widget.*
 import com.android.volley.Response
 import com.android.volley.toolbox.Volley
 import com.google.firebase.FirebaseApp
+import com.google.firebase.iid.FirebaseInstanceId
 import com.kakao.sdk.auth.LoginClient
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.AuthErrorCause
@@ -150,6 +151,24 @@ class MainActivity : Activity() {
                                             Sharedpreference.set_manager_bankaccount(applicationContext(), "manager_bankaccount", manager_bankaccount, "managerinfo")// 파일에 맵핑형식으로 저장
 
                                             Toast.makeText(this@MainActivity, "로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show()
+                                           val id = Sharedpreference.get_business_reg_num(applicationContext(), "business_reg_num", "managerinfo")
+                                            val token = FirebaseInstanceId.getInstance().token
+                                            Log.d("asdfasdf", token)
+
+
+                                            val kListener: Response.Listener<String?> = Response.Listener<String?>
+                                            // Generics를 String타입으로 한정
+                                            {
+                                                try {
+                                                } catch (e: java.lang.Exception) {
+                                                    Log.d("mytest", e.toString())
+                                                }
+                                            }
+                                            if (Sharedpreference.get_state1(applicationContext(), "switch2", "state1")) {
+                                                val tokenRequest = TokenRequest(id, token, kListener)
+                                                val queue3 = Volley.newRequestQueue(this@MainActivity)
+                                                queue3.add(tokenRequest)
+                                            }
                                             intent() //
 
                                         } else {  // 회원이 존재하지 않는다면
@@ -208,6 +227,24 @@ class MainActivity : Activity() {
                                             Sharedpreference.set_manager_office_info(applicationContext(), "manager_office_info", manager_office_info, "managerinfo")
                                             Sharedpreference.set_manager_bankaccount(applicationContext(), "manager_bankaccount", manager_bankaccount, "managerinfo")// 파일에 맵핑형식으로 저장
 
+                                            val id = Sharedpreference.get_business_reg_num(applicationContext(), "business_reg_num", "managerinfo")
+                                            val token = FirebaseInstanceId.getInstance().token
+                                            Log.d("asdfasdf", token)
+
+
+                                            val kListener: Response.Listener<String?> = Response.Listener<String?>
+                                            // Generics를 String타입으로 한정
+                                            {
+                                                try {
+                                                } catch (e: java.lang.Exception) {
+                                                    Log.d("mytest", e.toString())
+                                                }
+                                            }
+                                            if (Sharedpreference.get_state1(applicationContext(), "switch2", "state1")) {
+                                                val tokenRequest = TokenRequest(id, token, kListener)
+                                                val queue3 = Volley.newRequestQueue(this@MainActivity)
+                                                queue3.add(tokenRequest)
+                                            }
                                             intent() //
                                             //Toast.makeText(FindPasswordInfoActivity.this, "등록된 "+worker_pw, Toast.LENGTH_SHORT).show();
                                         } else {  // 회원이 존재하지 않는다면
@@ -283,6 +320,24 @@ class MainActivity : Activity() {
                                                             Sharedpreference.set_manager_office_info(applicationContext(), "manager_office_info", manager_office_info, "managerinfo")
                                                             Sharedpreference.set_manager_bankaccount(applicationContext(), "manager_bankaccount", manager_bankaccount, "managerinfo")// 파일에 맵핑형식으로 저장
 
+                                                            val id = Sharedpreference.get_business_reg_num(applicationContext(), "business_reg_num", "managerinfo")
+                                                            val token = FirebaseInstanceId.getInstance().token
+                                                            Log.d("asdfasdf", token)
+
+
+                                                            val kListener: Response.Listener<String?> = Response.Listener<String?>
+                                                            // Generics를 String타입으로 한정
+                                                            {
+                                                                try {
+                                                                } catch (e: java.lang.Exception) {
+                                                                    Log.d("mytest", e.toString())
+                                                                }
+                                                            }
+                                                            if (Sharedpreference.get_state1(applicationContext(), "switch2", "state1")) {
+                                                                val tokenRequest = TokenRequest(id, token, kListener)
+                                                                val queue3 = Volley.newRequestQueue(this@MainActivity)
+                                                                queue3.add(tokenRequest)
+                                                            }
                                                             intent() //
                                                             //Toast.makeText(FindPasswordInfoActivity.this, "등록된 "+worker_pw, Toast.LENGTH_SHORT).show();
                                                         } else {  // 회원이 존재하지 않는다면
@@ -372,6 +427,24 @@ class MainActivity : Activity() {
                             //Sharedpreference.set_Hope_local_sido(applicationContext(), "hope_local_sido", hope_local_sido)
                             //Sharedpreference.set_Hope_local_sigugun(applicationContext(), "hope_local_sigugun", hope_local_sigugun)// 파일에 맵핑형식으로 저장
 
+                            val id = Sharedpreference.get_business_reg_num(applicationContext(), "business_reg_num", "managerinfo")
+                            val token = FirebaseInstanceId.getInstance().token
+                            Log.d("asdfasdf", token)
+
+
+                            val kListener: Response.Listener<String?> = Response.Listener<String?>
+                            // Generics를 String타입으로 한정
+                            {
+                                try {
+                                } catch (e: java.lang.Exception) {
+                                    Log.d("mytest", e.toString())
+                                }
+                            }
+                            if (Sharedpreference.get_state1(applicationContext(), "switch2", "state1")) {
+                                val tokenRequest = TokenRequest(id, token, kListener)
+                                val queue3 = Volley.newRequestQueue(this@MainActivity)
+                                queue3.add(tokenRequest)
+                            }
                             intent() //
                             Toast.makeText(this@MainActivity, "로그인성공", Toast.LENGTH_SHORT).show();
                         } else {  // 회원이 존재하지 않는다면
