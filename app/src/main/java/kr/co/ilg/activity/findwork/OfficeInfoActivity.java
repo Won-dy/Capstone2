@@ -79,7 +79,12 @@ public class OfficeInfoActivity extends AppCompatActivity {
                         mapAddress =jResponse.getString("manager_office_address");
                         office_manager_name.setText(jResponse.getString("manager_name"));
                         office_manager_tel.setText(officemanagertel);
-                        office_introduce.setText(jResponse.getString("manager_office_info"));
+                        if(jResponse.getString("manager_office_info").equals("null")) {
+                            office_introduce.setText("안녕하세요. "+jResponse.getString("manager_office_name")+"입니다");
+                        }
+                        else {
+                            office_introduce.setText(jResponse.getString("manager_office_info"));
+                        }
                         //office_introduce.setText("안녕하세요 ★개미인력★입니다.\n현재 마포구 일대의 보내는 인력만 20명이 넘습니다.\n단가는 평균 15만원에서 16만원 정도이구요,\n초보 경력 상관없이 일자리 많으니까 많은 지원부탁드립니다!");
                     } else {
                         Toast.makeText(getApplicationContext(), "사무소 정보 로드 실패", Toast.LENGTH_SHORT).show();

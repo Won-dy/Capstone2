@@ -69,7 +69,12 @@ public class MyOfficeInfoManageActivity extends AppCompatActivity {
                         office_address.setText(jResponse.getString("manager_office_address"));
                         office_manager_name.setText(jResponse.getString("manager_name"));
                         office_manager_tel.setText(jResponse.getString("manager_phonenum"));
-                        office_introduce.setText(jResponse.getString("manager_office_info"));
+                        if(jResponse.getString("manager_office_info").equals("null")) {
+                            office_introduce.setText("안녕하세요. "+jResponse.getString("manager_office_name")+"입니다");
+                        }
+                        else {
+                            office_introduce.setText(jResponse.getString("manager_office_info"));
+                        }
                     } else {
                         Toast.makeText(getApplicationContext(), "사무소 정보 로드 실패", Toast.LENGTH_SHORT).show();
                     }
