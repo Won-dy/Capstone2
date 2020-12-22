@@ -90,6 +90,7 @@
         android:background="@drawable/line"
         android:id="@+id/text1"
         android:text="약관 내용"
+        android:scrollbars="vertical"
         android:padding="25dp"
         />
 

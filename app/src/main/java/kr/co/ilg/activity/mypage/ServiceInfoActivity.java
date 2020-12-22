@@ -2,6 +2,7 @@ package kr.co.ilg.activity.mypage;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -34,7 +35,41 @@ public class ServiceInfoActivity extends Activity implements View.OnClickListene
             "④ “기업 회원”이라 함은 인력 채용 및 교육을 목적으로 “회사”가 운영하는 “사이트”를 통하여 본 약관에 동의하고, “회사”와 이용 계약을 체결하여 “아이디(ID)”를 부여 받은 기업과 단체를 말합니다.\n" +
             "⑤ “아이디(ID)”라 함은 “회원” 식별과 “회원”의 “서비스” 이용을 위하여 “회원”이 직접 지정하고 이를 “회사”가 부여하는 문자 또는 숫자의 조합을 말합니다.\n" +
             "⑥ “비밀번호”라 함은 “서비스”를 이용하려는 사람이 “아이디(ID)”를 부여 받은 자와 동일인임을 확인하고, “회원”의 권익을 보호하기 위하여 “회원”이 직접 지정한 문자 또는 숫자의 조합을 말합니다.\n\n";
-    String ToS2 = "";
+    String ToS2 = "제1조 (목적)\n" +
+            "이 약관은 농협생명보험주식회사(이하 “회사”라 한다)와 이용자 사이의 전자금융거래에 관한 기본적인 사항을 정함으로써 거래를 신속하고 효율적으로 처리하며 거래당사자 상호간의 이해관계를 합리적으로 조정하는 것을 목적으로 한다.\n" +
+            "제2조(용어의 정의)\n" +
+            "① 이 약관에서 사용하는 용어의 정의는 다음 각 호와 같다.\n" +
+            "1. “전자금융거래”라 함은 회사가 전자적 장치를 통하여 금융상품 및 서비스를 제공하고 이용자가 회사와 직접 대면하거나\n" +
+            "의사소통을 하지 아니하고 자동화된 방식으로 이를 이용하는 거래를 말한다.\n" +
+            "2. “이용자”라 함은 전자금융거래를 위하여 회사와 체결한 계약(이하 “전자금융거래계약” 이라 한다)에 따라 전자금융거래를\n" +
+            "이용하는 자를 말한다.\n" +
+            "3. “전자적 장치”라 함은 전자금융거래정보를 전자적 방법으로 전송하거나 처리하는데 이용되는 장치로서 현금자동지급기,\n" +
+            "자동입출금기, 지급용단말기, 컴퓨터, 전화기 그 밖에 전자적 방법으로 정보를 전송하거나 처리하는 장치를 말한다.\n" +
+            "4. “접근매체”라 함은 전자금융거래에 있어서 이용자가 거래지시를 하거나 또는 이용자 및 거래내용의 진실성과 정확성을\n" +
+            "확보하기 위하여 사용되는 다음 각목의 어느 하나에 해당하는 수단 또는 정보를 말한다.\n" +
+            "가. 전자식 카드 및 이에 준하는 전자적 정보\n" +
+            "나. 전자서명법에 따른 인증서\n" +
+            "다. 회사에 등록된 이용자 번호\n" +
+            "라. 등록되어 있는 이용자의 생체정보\n" +
+            "마. 가목 또는 나목의 수단이나 정보를 사용하는데 필요한 비밀번호\n" +
+            "5. “전자문서”라 함은 전자문서 및 전자거래기본법 제2조제1호의 규정에 따라 작성, 송신ㆍ수신 또는 저장된 정보를 말한다.\n" +
+            "6. “거래지시”라 함은 이용자가 전자금융거래계약에 따라 회사에게 전자금융거래의 처리를 지시하는 것을 말한다.\n" +
+            "7. “오류”라 함은 이용자의 고의 또는 과실 없이 전자금융거래가 약관(개별약관을 포함한다), 전자금융거래계약 또는 이용자의\n" +
+            "거래지시에 따라 이행되지 아니한 경우를 말한다.\n" +
+            "8. “전자지급거래”라 함은 자금을 주는 자(이하 “지급인”이라 한다)가 회사로 하여금 전자지급수단을 이용하여\n" +
+            "자금을 받는 자(이하 “수취인”이라 한다)에게 자금을 이동하게 하는 전자금융거래를 말한다.\n" +
+            "9. “전자지급수단”이라 함은 전자자금이체, 직불전자지급수단, 선불전자지급수단, 전자화폐, 신용카드, 전자채권 그 밖의\n" +
+            "전자적 방법에 따른 지급수단을 말한다.\n" +
+            "10. “전자자금이체”라 함은 지급인과 수취인 사이에 자금을 지급할 목적으로 회사에 개설된 계좌에서 다른 계좌로 전자적 장치에 의하여 다음 각 목의 어느 하나에 해당하는 방법으로 자금을 이체하는 것을 말한다.\n" +
+            "가. 회사에 대한 지급인의 지급지시\n" +
+            "나. 회사에 대한 수취인의 추심지시(이하 “추심이체”라 한다)\n" +
+            "11. “정보시스템”이라 함은 전자금융업무를 포함하여 정보기술부문에 사용되는 하드웨어(hardware)와 소프트웨어(software)를 말하며 관련 장비를 포함한다.\n" +
+            "12. “영업일”이라 함은 회사가 영업점에서 정상적인 영업을 하는 날을 말한다.\n" +
+            "13. “개별약관”이라 함은 이 약관과 함께 전자금융거래에 적용되는 약관으로서 회사가 별도로 작성한 약관을 말한다.\n" +
+            "② 이 약관에서 별도로 정하지 아니한 용어의 정의는 전자금융거래법 및 전자금융 거래법 시행령, 전자금융감독규정 및\n" +
+            "전자금융감독규정 시행세칙에서 정하는 바에 따른다.\n" +
+            "제3조(적용범위)\n" +
+            "이 약관은 다른 법률에 특별한 규정이 있는 경우를 제외하고 모든 전자금융거래에 적용한다.";
     String ToS3 = "1. 총 칙\n" +
             "개인정보란 생존하는 개인에 관한 정보로서 당해 정보에 포함되어 있는 성명，본인인증기관을 통해 인증된 개인식별 번호 등의 사항에 의하여 당해 개인을 식별할 수 있는 정보(당해 정보만으로는 특정 개인을 식별할 수 없더라도 다른 정보와 용이하게 결합하여 식별할 수 있는 것을 포함합니다)를 말합니다.\n" +
             "① (주)휘뚜루마뚜루는 정보주체의 개인정보보호를 매우 중요시하며, 『정보 통신망 이용 촉진 및 정보보호에 관한 법률』상의 개인정보 보호 규정 및 『개인정보보호법』을 준수하고 있습니다. (주)휘뚜루마뚜루는 개인정보 처리방침을 통하여 정보주체가 제공하는 개인정보가 어떠한 용도와 방식으로 이용되고 있으며 개인정보보호를 위해 어떠한 조치가 취해지고 있는지 알려드립니다.\n" +
@@ -113,7 +148,9 @@ public class ServiceInfoActivity extends Activity implements View.OnClickListene
         }
 
         text1 = (TextView)findViewById(R.id.text1);
-
+        text1.setMovementMethod(new ScrollingMovementMethod());
+        text1.setText(ToS1);
+        btns[0].setBackground(getDrawable(R.drawable.servicestroke));
 
 
     }
@@ -125,7 +162,7 @@ public class ServiceInfoActivity extends Activity implements View.OnClickListene
         }
         switch (v.getId()){
             case R.id.btn1 : text1.setText(ToS1); btns[0].setBackground(getDrawable(R.drawable.servicestroke)); break;
-            case R.id.btn2 : text1.setText("전자금융거래 이용약관");btns[1].setBackground(getDrawable(R.drawable.servicestroke)); break;
+            case R.id.btn2 : text1.setText(ToS2);btns[1].setBackground(getDrawable(R.drawable.servicestroke)); break;
             case R.id.btn3 : text1.setText(ToS3); btns[2].setBackground(getDrawable(R.drawable.servicestroke));break;
             case R.id.btn4 : text1.setText(ToS4); btns[3].setBackground(getDrawable(R.drawable.servicestroke));break;
         }
