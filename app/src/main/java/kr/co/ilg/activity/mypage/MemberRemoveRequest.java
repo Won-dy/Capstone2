@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class MemberRemoveRequest extends StringRequest {
 
-    final static private String URL = "http://14.63.162.160/MemberRemove.php";
+    final static private String URL = "http://14.63.218.69/MemberRemove.php";
 
     private Map<String, String> parameters;
 

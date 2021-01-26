@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class FieldWorkerNotify extends StringRequest {
 
-    final static private String URL = "http://14.63.162.160/FieldWorkerNotify.php";
+    final static private String URL = "http://14.63.218.69/FieldWorkerNotify.php";
     private Map<String, String> parameters;
 
 
