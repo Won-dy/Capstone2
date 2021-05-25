@@ -167,7 +167,7 @@ public class WriteOfficeInfoActivity extends Activity {
         // webView.setWebChromeClient(new MyWebChromeClient());
         // webview url load
         webView.setWebChromeClient(new MyWebChromeClient());
-        webView.loadUrl("http://14.63.218.69/getAddress.php");
+        webView.loadUrl("http://14.63.220.50/getAddress.php");
     }
 
     private class AndroidBridge {

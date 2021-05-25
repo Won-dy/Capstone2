@@ -278,7 +278,7 @@ public class PickStateActivity extends AppCompatActivity {
                                         String message = jsonResponse.getString("fieldname")+"에서 선발취소되었습니다";
                                         String token = jsonResponse.getString("token");
 
-                                        String msg = "http://14.63.218.69/sendtest.php?token="+token+"&title=선발취소&body="+message;
+                                        String msg = "http://14.63.220.50/sendtest.php?token="+token+"&title=선발취소&body="+message;
 
                                         com.example.capstone2.executePHP executePHP = new com.example.capstone2.executePHP();
                                         executePHP.execute(msg);

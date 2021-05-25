@@ -7,7 +7,7 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.Map;
 
 public class NoticeRequest extends StringRequest {
-    final static private String URL = "http://14.63.218.69/NoticeRequest.php";
+    final static private String URL = "http://14.63.220.50/NoticeRequest.php";
     private Map<String, String> parameters;
 
     public NoticeRequest(Response.Listener<String> listener) { //생성자 부분이라 콜백메소드는 생략

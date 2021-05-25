@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TokenRequest1 extends StringRequest {
-    final static private String URL = "http://14.63.218.69/register4.php";
+    final static private String URL = "http://14.63.220.50/register4.php";
 
     private Map<String, String> parameters;  // 전송 데이터 넣을 Map 객체 선언
 

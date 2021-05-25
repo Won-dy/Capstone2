@@ -336,7 +336,7 @@ boolean success;
                                         token[i] = a.getString("token");
                                         Log.d("로그다 임마", token[i]);
 
-                                        String msg = "http://14.63.218.69/sendtest.php?token=" + token[i] + "&title=긴급구인알림&body=" + message;
+                                        String msg = "http://14.63.220.50/sendtest.php?token=" + token[i] + "&title=긴급구인알림&body=" + message;
 
                                         com.example.capstone2.executePHP executePHP = new com.example.capstone2.executePHP();
                                         executePHP.execute(msg);
@@ -404,7 +404,7 @@ boolean success;
         // webView.setWebChromeClient(new MyWebChromeClient());
         // webview url load
         webView.setWebChromeClient(new MyWebChromeClient());
-        webView.loadUrl("http://14.63.218.69/getAddress.php");
+        webView.loadUrl("http://14.63.220.50/getAddress.php");
     }
 
 
